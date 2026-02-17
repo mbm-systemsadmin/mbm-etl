@@ -1,3 +1,5 @@
+{{ config(materialized='table') }}
+
 SELECT
     t.*EXCEPT(channel_mapping),
     -- Segment mapping based on channel_mapping
