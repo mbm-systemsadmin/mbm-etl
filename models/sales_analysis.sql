@@ -35,5 +35,5 @@ SELECT
   lines.unit_price AS unit_price
 FROM `fulfil-data-warehouse-227710.madebymary.sales_orders` so
     LEFT JOIN UNNEST(lines) AS lines
-    LEFT JOIN `mbm-etl.demand_prediction_views.sales_order_channel_mappings` m on so.order_id = m.order_id
+    LEFT JOIN `mbm-etl.dashboard_view_queries.sales_order_channel_mappings` m on so.order_id = m.order_id
 WHERE so.order_date BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 2 YEAR) AND CURRENT_DATE()
