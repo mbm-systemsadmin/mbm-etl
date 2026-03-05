@@ -23,4 +23,4 @@ SELECT
 FROM `fulfil-data-warehouse-227710.madebymary.products` product 
 LEFT JOIN UNNEST(product.costs) AS co 
 LEFT JOIN UNNEST(product.list_prices) AS lp
-WHERE category_root_name NOT IN ('SERVICE','To be Classified','PACKAGING','OPTIONS_HIDDEN_PRODUCT')
+#WHERE category_root_name NOT IN ('SERVICE','To be Classified','PACKAGING','OPTIONS_HIDDEN_PRODUCT')
