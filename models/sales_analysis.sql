@@ -32,7 +32,8 @@ SELECT
   so.shipment_country_name,
   so.sales_person_name,
   lines.list_price AS list_price,
-  lines.unit_price AS unit_price
+  lines.unit_price AS unit_price,
+  CASE WHEN line_type = 'return' AND quantity < 0 THEN untaxed_amount_cpny_ccy_cache ELSE 0 END AS returns
 FROM `fulfil-data-warehouse-227710.madebymary.sales_orders` so
     LEFT JOIN UNNEST(lines) AS lines
     LEFT JOIN `mbm-etl.dashboard_view_queries.sales_order_channel_mappings` m on so.order_id = m.order_id
