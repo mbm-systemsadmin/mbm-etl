@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: shopify_raw
+    database: mbm-etl
+    schema: shopify_raw
+    tables:
+      - name: orders
+      - name: order_refunds

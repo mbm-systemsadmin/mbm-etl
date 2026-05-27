@@ -36,5 +36,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  mbm-etl:
+  my_new_project:
+    +schema: dbt_mbm
     +materialized: table
+    bronze:
+      +schema: shopify_bronze

@@ -1,0 +1,123 @@
+version: 2
+
+models:
+  - name: br_shopify__orders_header
+    description: Flattened order header model from raw Shopify orders payload.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+
+  - name: br_shopify__order_line_items
+    description: Flattened order line items unnested from orders.line_items.
+    columns:
+      - name: line_item_id
+        tests:
+          - not_null
+
+  - name: br_shopify__order_discount_applications
+    description: Flattened order-level discount applications from orders.discount_applications.
+
+  - name: br_shopify__order_line_item_discount_allocations
+    description: Flattened line-level discount allocations from line_items.discount_allocations.
+
+  - name: br_shopify__order_shipping_lines
+    description: Flattened shipping lines from orders.shipping_lines.
+
+  - name: br_shopify__refund_line_items
+    description: Flattened refund line items from order_refunds.refund_line_items.
+
+  - name: br_shopify__refunds_header
+    description: Flattened refund header facts from shopify raw order_refunds.
+    columns:
+      - name: refund_id
+        tests:
+          - not_null
+          - unique
+
+  - name: br_shopify__refund_order_adjustments
+    description: Flattened order adjustments from order_refunds.order_adjustments.
+
+  - name: br_shopify__refund_transactions
+    description: Flattened refund transactions from order_refunds.transactions.
+
+  - name: br_shopify__customers
+    description: Customer master records with marketing and default address attributes.
+    columns:
+      - name: customer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: br_shopify__customer_addresses
+    description: Customer address records from shopify raw customer_address.
+
+  - name: br_shopify__abandoned_checkouts
+    description: Abandoned checkout header records for funnel analysis.
+
+  - name: br_shopify__abandoned_checkout_line_items
+    description: Flattened abandoned checkout line items.
+
+  - name: br_shopify__customer_journey_summary
+    description: Customer journey summary JSON by order.
+
+  - name: br_shopify__price_rules
+    description: Discount and promotion rule definitions.
+
+  - name: br_shopify__discount_codes
+    description: Discount code performance and definition records.
+
+  - name: br_shopify__products
+    description: Product master records.
+
+  - name: br_shopify__product_variants
+    description: Variant-level product records.
+
+  - name: br_shopify__product_images
+    description: Product image records.
+
+  - name: br_shopify__product_options
+    description: Flattened product option definitions from products.options.
+
+  - name: br_shopify__collections
+    description: Collection master records.
+
+  - name: br_shopify__collects
+    description: Product-to-collection relationships.
+
+  - name: br_shopify__inventory_items
+    description: Inventory item master records.
+
+  - name: br_shopify__inventory_levels
+    description: Inventory availability by item and location.
+
+  - name: br_shopify__transactions
+    description: Payment transaction facts linked to orders.
+
+  - name: br_shopify__tender_transactions
+    description: Tender transaction payment records.
+
+  - name: br_shopify__fulfillments
+    description: Fulfillment header records.
+
+  - name: br_shopify__fulfillment_line_items
+    description: Flattened fulfillment line items.
+
+  - name: br_shopify__fulfillment_orders
+    description: Fulfillment order workflow records.
+
+  - name: br_shopify__order_risks
+    description: Order risk and fraud assessment records.
+
+  - name: br_shopify__locations
+    description: Shopify location master records.
+
+  - name: br_shopify__campaigns
+    description: Raw campaign entities for marketing analysis.
+
+  - name: br_shopify__events
+    description: Raw event entities for marketing analysis.
+
+  - name: br_shopify__events_detailed
+    description: Detailed raw event entities for marketing analysis.
