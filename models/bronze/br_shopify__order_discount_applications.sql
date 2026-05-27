@@ -20,12 +20,11 @@ with orders as (
 select
     to_hex(md5(concat(
         cast(o.id as string), '|',
-        coalesce(JSON_VALUE(d, '$.title'), ''), '|',
-        coalesce(JSON_VALUE(d, '$.type'), ''), '|',
-        coalesce(JSON_VALUE(d, '$.value'), '')
+        cast(discount_application_index as string)
     ))) as discount_application_row_id,
     cast(o.id as string) as order_id,
     safe_cast(o.updated_at as timestamp) as order_updated_at,
+    discount_application_index,
     cast(JSON_VALUE(d, '$.code') as string) as discount_code,
     cast(JSON_VALUE(d, '$.title') as string) as discount_title,
     cast(JSON_VALUE(d, '$.type') as string) as discount_type,
@@ -35,5 +34,5 @@ select
     cast(JSON_VALUE(d, '$.value_type') as string) as value_type,
     safe_cast(JSON_VALUE(d, '$.value') as numeric) as value
 from orders o
-left join unnest(ifnull(JSON_EXTRACT_ARRAY(o.discount_applications), cast([] as array<json>))) as d
+left join unnest(ifnull(JSON_EXTRACT_ARRAY(o.discount_applications), cast([] as array<json>))) as d with offset as discount_application_index
 where d is not null
